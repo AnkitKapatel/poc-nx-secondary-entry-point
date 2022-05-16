@@ -1,7 +1,7 @@
 import { Inject, Injectable, InjectionToken } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { FusionConfig } from './fusion.config';
+import { CustomConfig } from './custom.config';
 
 export const CUSTOM_CONFIG = new InjectionToken('CustomConfig');
 export let counter = 0;
@@ -13,7 +13,7 @@ export class ConfigurationService {
   private _uiSettingsSubject: BehaviorSubject<string> = new BehaviorSubject("");
   public readonly _defaultUiSettings: string;
 
-  constructor( private readonly _router: Router, @Inject(CUSTOM_CONFIG) private readonly _config:FusionConfig) {
+  constructor( private readonly _router: Router, @Inject(CUSTOM_CONFIG) private readonly _config:CustomConfig) {
     const isConfigArray = Array.isArray(_config);
     this.appSettings = isConfigArray ?  _config[0].appSettings:  _config.appSettings;
     this._defaultUiSettings = isConfigArray ?  _config[0].uiSettings : _config.uiSettings;
